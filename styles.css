@@ -248,6 +248,8 @@ img {
   background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-decoration: none;
 }
 
@@ -386,7 +388,6 @@ img {
   background: var(--gradient);
   border-radius: 2px;
 }
-}
 
 .hero-text h1 .highlight {
   background: var(--gradient-text);
@@ -486,8 +487,11 @@ img {
 .portfolio {
   padding: 100px 0;
   position: relative;
-  background: var(--white);
   overflow: hidden;
+  background: linear-gradient(135deg, #FEF3E2 0%, #F7F4EA 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  z-index: 1;
 }
 
 .portfolio::before {
@@ -514,31 +518,37 @@ img {
 }
 
 .section-title {
-  font-size: 2.5rem;
-  color: var(--dark);
+  font-size: 2.8rem;
+  font-weight: 700;
   margin-bottom: 1rem;
+  text-align: center;
+  background: linear-gradient(90deg, #CD2C58, #e05d7f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   position: relative;
   display: inline-block;
+  margin: 0 auto 1.5rem;
+  padding-bottom: 10px;
 }
 
 .section-title::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 80px;
   height: 3px;
-  background: var(--gradient);
+  background: linear-gradient(90deg, #CD2C58, #e05d7f);
   border-radius: 3px;
 }
 
 .section-subtitle {
   color: var(--text-light);
   font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
 /* Removed filter styles as per requirement */
@@ -633,7 +643,7 @@ img {
 }
 
 .portfolio-item:hover .portfolio-image img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .portfolio-overlay {
@@ -830,7 +840,7 @@ img {
 }
 
 .contact-info p {
-  color: #04216a !important;
+  color: #CD2C58 !important;
   font-size: 1.2rem;
   margin: 1.5rem auto 2.5rem;
   padding: 1rem;
@@ -1103,7 +1113,7 @@ footer p {
 
 .project-header h2 {
     margin: 0 0 12px 0;
-    color: #2c3e50;
+    color: #753a88;
     font-size: 2.2em;
     font-weight: 700;
     line-height: 1.2;
@@ -1654,7 +1664,7 @@ footer p {
 /* ===== PORTFOLIO SECTION ===== */
 .portfolio {
   padding: 80px 0;
-  background: linear-gradient(120deg, #f6d365, #fda085, #a1c4fd, #c2e9fb);
+  background: linear-gradient(120deg, #F7F4EA, #FAFDD6, #F3F2EC, #DDF4E7);
   background-size: 400% 400%;
   animation: gradientShift 20s ease infinite;
   font-family: "Poppins", sans-serif;
@@ -1715,7 +1725,11 @@ footer p {
 .section-title h3 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--dark);
+  background: linear-gradient(45deg, #8e2de2, #4a00e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
   margin-bottom: 1rem;
 }
 
@@ -1888,6 +1902,7 @@ footer p {
   padding: 100px 0;
   overflow: hidden;
   font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
   color: #fff;
   text-align: center;
 }
@@ -2075,11 +2090,13 @@ footer p {
     text-align: center;
 }
 
-.footer-grad{
-    background: linear-gradient(135deg, #fcf3f3, #c2f3ef);
-    color: #fff;
-    padding: 2rem 0;
+.footer-grad {
+    background: linear-gradient(135deg, #2b2d42, #1a1a2e);
+    color: #f8f9fa;
+    padding: 3rem 0 1.5rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .contact-flex{
@@ -2087,4 +2104,28 @@ footer p {
     flex-direction: column;
     justify-content: left;
     align-items: left;
+}
+
+.portfolio-image{
+    scale: 1.01;
+}
+
+.profile-image{
+    scale: 1.15;
+}
+
+.section-title{
+    color: #753a88;
+}
+
+.footer-content p{
+    color: white;
+}
+
+.footer-links a{
+    color: whitesmoke;
+}
+
+.cont-para{
+    color: #DC143C;
 }
