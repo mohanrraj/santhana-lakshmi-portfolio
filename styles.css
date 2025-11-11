@@ -242,15 +242,34 @@ img {
   box-shadow: var(--shadow-md);
 }
 
+/* Logo animation */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .logo {
   font-size: 1.8rem;
   font-weight: 800;
   background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   text-decoration: none;
+  animation: float 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.logo:hover {
+  animation: none;
+  transform: scale(1.05);
 }
 
 .nav-links {
@@ -387,6 +406,13 @@ img {
   height: 4px;
   background: var(--gradient);
   border-radius: 2px;
+}
+
+/* Remove underline in mobile view */
+@media (max-width: 768px) {
+  .hero-text h1::after {
+    display: none;
+  }
 }
 
 .hero-text h1 .highlight {
