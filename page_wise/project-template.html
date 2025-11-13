@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Project Detail Page Styles */
+        .project-detail {
+            padding: 100px 0 60px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+        
+        .project-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: #6c63ff;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .project-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .project-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #6c63ff, #4a42e6);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .project-location {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin: 20px 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .project-location i {
+            color: #6c63ff;
+            font-size: 1.1em;
+        }
+        
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 0 auto 40px;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        
+        .project-image-container {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            aspect-ratio: 16/9;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image-container:hover .project-image {
+            transform: scale(1.03);
+        }
+        
+        .project-image:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-description {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            line-height: 1.8;
+            color: #4a5568;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+        }
+        
+        .project-description h3 {
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .project-description h3:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #6c63ff, #4a42e6);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .project-description p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        
+        .whatsapp-btn-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+        
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .project-gallery {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+                gap: 20px;
+            }
+            
+            .project-description {
+                padding: 25px 20px;
+                margin: 0 15px 30px;
+            }
+            
+            .project-description h3 {
+                font-size: 1.5rem;
+            }
+            
+            .whatsapp-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .project-title {
+                font-size: 1.8rem;
+            }
+            
+            .project-location {
+                font-size: 1.1rem;
+            }
+            
+            .project-description p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">SL</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#portfolio">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Project Detail Section -->
+    <section class="project-detail">
+        <div class="project-container">
+            <a href="index.html#portfolio" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </a>
+            
+            <div class="project-header">
+                <h1 class="project-title" id="projectTitle">Project Title</h1>
+                <p class="project-location" id="projectLocation">Location</p>
+            </div>
+            
+            <div class="project-gallery">
+                <img id="projectPoster" src="" alt="Project Poster" class="project-image">
+                <img id="projectLayout" src="" alt="Project Layout" class="project-image">
+            </div>
+            
+            <div class="project-description">
+                <h3>Project Details</h3>
+                <p id="projectDescription"></p>
+                
+                <div class="whatsapp-btn-container">
+                    <a id="whatsappBtn" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp for More Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Get project data from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id');
+        
+        // Project data
+        const projects = {
+            'project1': {
+                title: 'Siddhar Nagar',
+                location: 'Salem, Tamil Nadu',
+                poster: 'projects/posters/01.jpg',
+                layout: 'projects/layouts/01a.jpg',
+                description: 'Siddhar Nagar offers a secure gated community with tar roads, parks, a temple, and 24/7 surveillance. It includes drainage systems, water connections for each plot, and fenced boundaries for added safety. With CCTV, children\'s play areas, parking, and 80% bank loan availability, it ensures modern and comfortable living.'
+            },
+            'project2': {
+                title: 'Satellite City',
+                location: 'Anupuram, Tamil Nadu',
+                poster: 'projects/posters/02.jpg',
+                layout: 'projects/layouts/02a.jpg',
+                description: 'SATELLITE CITY offers a gated community with parks, walkways, streetlights, and 24/7 security. It features commercial shops, children\'s play areas, and ample parking with cemented roads and stormwater drains. Water, bank loan facilities, and on-road access make it a fully equipped and convenient residential layout.'
+            },
+            'project3': {
+                title: 'MM Nagar',
+                location: 'Chengalpattu, Tamil Nadu',
+                poster: 'projects/posters/03.jpg',
+                layout: 'projects/layouts/03a.jpg',
+                description: 'MM NAGAR offers a gated community with tar roads, parks, a temple, and round-the-clock security in a pollution-free environment. It features walkways, public utility areas, stormwater drains, and streetlights for comfortable living. With commercial shops, children\'s play areas, parking, and 90% bank loan availability, it ensures convenience and accessibility.'
+            },
+            'project4': {
+                title: 'Railway Nagar',
+                location: 'Chengalpattu, Tamil Nadu',
+                poster: 'projects/posters/04.jpg',
+                layout: 'projects/layouts/04a.jpg',
+                description: 'RAILWAY NAGAR offers a secure gated community with tar roads, parks, a temple, and 24/7 security. It includes walkways, public utility areas, stormwater drains, and streetlights for a well-planned layout. With commercial shops, children\'s play areas, parking, and 90% bank loan availability, it ensures convenient living.'
+            },
+            'project5': {
+                title: 'Sri Ranganathar Avenue',
+                location: 'Palur, Tamil Nadu',
+                poster: 'projects/posters/05.jpg',
+                layout: 'projects/layouts/05a.jpg',
+                description: 'SRI RANGANATHAR AVENUE offers a gated community with cement roads, parks, a temple, and 24/7 security. It features walkways, public utility areas, stormwater drains, and streetlights for a well-developed layout. With commercial shops, children\'s play areas, parking, and 90% bank loan availability, it ensures modern and convenient living.'
+            },
+            'project6': {
+                title: 'Sri Sai Padmavati Nagar',
+                location: 'Chengalpattu, Tamil Nadu',
+                poster: 'projects/posters/06.jpg',
+                layout: 'projects/layouts/06a.jpg',
+                description: 'Sri Sai Padmavati Nagar offers a safe gated community with tar roads, parks, a temple, and 24/7 security in a pollution-free environment. It includes walkways, stormwater drains, and 24×7 transport access for convenient living. With commercial shops, children\'s play areas, parking, and 90% bank loan availability, it ensures comfort and accessibility.'
+            },
+            'project7': {
+                title: 'VSR Nagar',
+                location: 'Chengalpattu, Tamil Nadu',
+                poster: 'projects/posters/07.jpg',
+                layout: 'projects/layouts/07a.jpg',
+                description: 'VSR NAGAR offers a gated community with black tar roads, parks, a temple, and 24/7 security in a pollution-free environment. It features rainwater harvesting, CCTV surveillance, and 24×7 transport facilities in an established residential area. With children\'s play areas, parking, and 90% bank loan availability, it ensures a secure and comfortable lifestyle.'
+            },
+            'project8': {
+                title: 'Collector Farms',
+                location: 'Chengalpattu, Tamil Nadu',
+                poster: 'projects/posters/08.jpg',
+                layout: 'projects/layouts/08a.jpg',
+                description: 'Collector Farms offers spacious plots starting from 5010 sq. ft. with 24×7 transport, water, and electricity facilities. It provides a pollution-free environment with lush green plantations and 24 ft wide tar roads. With clear documentation, it\'s ideal for organic agriculture and farmland development.'
+            },
+            'project9': {
+                title: 'Kanchi Kanda Kottam',
+                location: 'Kanchipuram, Tamil Nadu',
+                poster: 'projects/posters/09.jpg',
+                layout: 'projects/layouts/09a.jpg',
+                description: 'KANCHI KANDA KOTTAM offers a gated community with cement roads, a park, a temple, and 24/7 security. It includes walkways, public utility areas, stormwater drains, and streetlights for a well-planned environment. With commercial shops, children\'s play areas, parking, and 90% bank loan availability, it provides comfort and convenience.'
+            },
+            'project10': {
+                title: 'Sri Sakthi Vinayagar Nagar',
+                location: 'Tellar, Vandavasi, Tamil Nadu',
+                poster: 'projects/posters/10.jpg',
+                layout: 'projects/layouts/10a.jpg',
+                description: 'SRI SAKTHI VINAYAGAR NAGAR offers a gated community with cement roads, parks, a temple, and 24/7 security. It features walkways, public utility areas, stormwater drains, and streetlights for a well-planned environment. With commercial shops, children\'s play areas, parking, and 90% bank loan availability, it provides comfort and convenience.'
+            }
+        };
+        
+        // Update page with project data
+        function loadProject() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id');
+            
+            if (!projectId || !projects[projectId]) {
+                window.location.href = 'index.html#portfolio';
+                return;
+            }
+            
+            const project = projects[projectId];
+            
+            // Update page title and content
+            document.title = `${project.title} | Project Details`;
+            document.getElementById('projectTitle').textContent = project.title;
+            document.getElementById('projectLocation').innerHTML = `
+                <i class="fas fa-map-marker-alt"></i>
+                <span>${project.location}</span>
+            `;
+            document.getElementById('projectDescription').textContent = project.description;
+            
+            // Update images
+            const posterImg = document.getElementById('projectPoster');
+            const layoutImg = document.getElementById('projectLayout');
+            
+            posterImg.src = project.poster;
+            posterImg.alt = `${project.title} - Poster`;
+            
+            if (layoutImg) {
+                layoutImg.src = project.layout;
+                layoutImg.alt = `${project.title} - Layout`;
+            }
+            
+            // Update WhatsApp button with project details
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            if (whatsappBtn) {
+                const phoneNumber = '919498500109'; // WhatsApp number (without + or spaces)
+                const message = `Hi, I'm interested in ${project.title} at ${project.location}. I would like to know more details about this project.`;
+                const encodedMessage = encodeURIComponent(message);
+                whatsappBtn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            }
+            
+            layoutImg.src = project.layout;
+            layoutImg.alt = `${project.title} - Layout`;
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProject();
+            
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navLinksItems = document.querySelectorAll('.nav-links a');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            if (navLinksItems.length > 0) {
+                navLinksItems.forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+            
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true
+                });
+            }
+        });
+    </script>
+    
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+</html>
