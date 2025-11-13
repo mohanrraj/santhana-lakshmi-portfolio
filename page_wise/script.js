@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target === modal) {
             closeModal();
         }
-    });
+    });//For test
 
         // Close modal with Escape key
     document.addEventListener('keydown', (e) => {
